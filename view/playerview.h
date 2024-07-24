@@ -17,6 +17,7 @@ public:
     void updateFileName(const QString &fileName);
 
     void updateProgress(qint64 position, qint64 duration);
+    void setDuration(qint64 duration);
 
 signals:
     void playClicked();

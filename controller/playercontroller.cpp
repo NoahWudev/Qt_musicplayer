@@ -37,9 +37,8 @@ void PlayerController::onFileSelected(const QString &filePath)
     view->updateFileName(fileName);
 }
 
-void PlayerController::onProgressChanged(int percentage)
+void PlayerController::onProgressChanged(int position)
 {
-    qint64 position = (percentage * currentDuration) / 1000;
     model->setPosition(position);
 }
 
@@ -51,5 +50,6 @@ void PlayerController::updateViewProgress(qint64 position)
 void PlayerController::updateViewDuration(qint64 duration)
 {
     currentDuration = duration;
+    view->setDuration(duration);
     view->updateProgress(model->position(), duration);
 }

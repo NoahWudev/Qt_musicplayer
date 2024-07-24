@@ -11,7 +11,7 @@ PlayerView::PlayerView(QWidget *parent) : QWidget(parent)
     fileNameLabel = new QLabel("No file selected", this);
     // time slider functions
     progressSlider = new QSlider(Qt::Horizontal, this);
-    progressSlider->setRange(0, 1000);  // using percentage
+
     timeLabel = new QLabel("00:00 / 00:00", this);
 
     QHBoxLayout *progressLayout = new QHBoxLayout();
@@ -48,11 +48,15 @@ void PlayerView::updateFileName(const QString &fileName)
     fileNameLabel->setText("Current file: " + fileName);
 }
 
+void PlayerView::setDuration(qint64 duration)
+{
+    progressSlider->setRange(0, duration);
+}
+
 void PlayerView::updateProgress(qint64 position, qint64 duration)
 {
     if (duration > 0) {
-        int value = static_cast<int>((position * 1000) / duration);
-        progressSlider->setValue(value);
+        progressSlider->setValue(position);
     }
 
     QTime currentTime((position / 3600000) % 60, (position / 60000) % 60, (position / 1000) % 60);
