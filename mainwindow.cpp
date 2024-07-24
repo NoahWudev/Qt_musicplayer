@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     controller = new PlayerController(model, view, this);
 
     setWindowTitle("Mp3 player");
+    resize(QSize(400, 50));
     setCentralWidget(view);
 }
 

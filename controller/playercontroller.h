@@ -17,9 +17,14 @@ public slots:
     void onStopClicked();
     void onFileSelected(const QString &filePath);
 
+    void onProgressChanged(int percentage);
+    void updateViewProgress(qint64 position);
+    void updateViewDuration(qint64 duration);
+
 private:
     AudioModel *model;
     PlayerView *view;
+    qint64 currentDuration;
 };
 
 #endif // PLAYERCONTROLLER_H
